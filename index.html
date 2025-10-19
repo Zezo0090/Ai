@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جامعة الملك عبدالعزيز - المساعد الذكي</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            /* Primitive Color Tokens */
+            --color-white: rgba(255, 255, 255, 1);
+            --color-black: rgba(0, 0, 0, 1);
+            --color-cream-50: rgba(252, 252, 249, 1);
+            --color-cream-100: rgba(255, 255, 253, 1);
+            --color-gray-200: rgba(245, 245, 245, 1);
+            --color-gray-300: rgba(167, 169, 169, 1);
+            --color-gray-400: rgba(119, 124, 124, 1);
+            --color-slate-500: rgba(98, 108, 113, 1);
+            --color-brown-600: rgba(94, 82, 64, 1);
+            --color-charcoal-700: rgba(31, 33, 33, 1);
+            --color-charcoal-800: rgba(38, 40, 40, 1);
+            --color-slate-900: rgba(19, 52, 59, 1);
+            --color-teal-300: rgba(50, 184, 198, 1);
+            --color-teal-400: rgba(45, 166, 178, 1);
+            --color-teal-500: rgba(33, 128, 141, 1);
+            --color-teal-600: rgba(29, 116, 128, 1);
+            --color-teal-700: rgba(26, 104, 115, 1);
+            --color-teal-800: rgba(41, 150, 161, 1);
+            --color-red-400: rgba(255, 84, 89, 1);
+            --color-red-500: rgba(192, 21, 47, 1);
+            --color-orange-400: rgba(230, 129, 97, 1);
+            --color-orange-500: rgba(168, 75, 47, 1);
+
+            /* RGB versions for opacity control */
+            --color-brown-600-rgb: 94, 82, 64;
+            --color-teal-500-rgb: 33, 128, 141;
+            --color-slate-900-rgb: 19, 52, 59;
+            --color-slate-500-rgb: 98, 108, 113;
+            --color-red-500-rgb: 192, 21, 47;
+            --color-red-400-rgb: 255, 84, 89;
+            --color-orange-500-rgb: 168, 75, 47;
+            --color-orange-400-rgb: 230, 129, 97;
+
+            /* Background color tokens (Light Mode) */
+            --color-bg-1: rgba(59, 130, 246, 0.08);
+            --color-bg-2: rgba(245, 158, 11, 0.08);
+            --color-bg-3: rgba(34, 197, 94, 0.08);
+            --color-bg-4: rgba(239, 68, 68, 0.08);
+            --color-bg-5: rgba(147, 51, 234, 0.08);
+            --color-bg-6: rgba(249, 115, 22, 0.08);
+            --color-bg-7: rgba(236, 72, 153, 0.08);
+            --color-bg-8: rgba(6, 182, 212, 0.08);
+
+            /* Semantic Color Tokens (Light Mode) */
+            --color-background: var(--color-cream-50);
+            --color-surface: var(--color-cream-100);
+            --color-text: var(--color-slate-900);
+            --color-text-secondary: var(--color-slate-500);
+            --color-primary: var(--color-teal-500);
+            --color-primary-hover: var(--color-teal-600);
+            --color-primary-active: var(--color-teal-700);
+            --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
+            --color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
+            --color-secondary-active: rgba(var(--color-brown-600-rgb), 0.25);
+            --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+            --color-btn-primary-text: var(--color-cream-50);
+            --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+            --color-card-border-inner: rgba(var(--color-brown-600-rgb), 0.12);
+            --color-error: var(--color-red-500);
+            --color-success: var(--color-teal-500);
+            --color-warning: var(--color-orange-500);
+            --color-info: var(--color-slate-500);
+            --color-focus-ring: rgba(var(--color-teal-500-rgb), 0.4);
+            --color-select-caret: rgba(var(--color-slate-900-rgb), 0.8);
+
+            /* Common style patterns */
+            --focus-ring: 0 0 0 3px var(--color-focus-ring);
+            --focus-outline: 2px solid var(--color-primary);
+            --status-bg-opacity: 0.15;
+            --status-border-opacity: 0.25;
+            
+            /* Typography */
+            --font-family-base: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            --font-family-arabic: "Tahoma", "Arial", "Segoe UI", sans-serif;
+            --font-size-xs: 11px;
+            --font-size-sm: 12px;
+            --font-size-base: 14px;
+            --font-size-md: 14px;
+            --font-size-lg: 16px;
+            --font-size-xl: 18px;
+            --font-size-2xl: 20px;
+            --font-size-3xl: 24px;
+            --font-size-4xl: 30px;
+            --font-weight-normal: 400;
+            --font-weight-medium: 500;
+            --font-weight-semibold: 550;
+            --font-weight-bold: 600;
+            --line-height-tight: 1.2;
+            --line-height-normal: 1.5;
+            --letter-spacing-tight: -0.01em;
+
+            /* Spacing */
+            --space-0: 0;
+            --space-1: 1px;
+            --space-2: 2px;
+            --space-4: 4px;
+            --space-6: 6px;
+            --space-8: 8px;
+            --space-10: 10px;
+            --space-12: 12px;
+            --space-16: 16px;
+            --space-20: 20px;
+            --space-24: 24px;
+            --space-32: 32px;
+
+            /* Border Radius */
+            --radius-sm: 6px;
+            --radius-base: 8px;
+            --radius-md: 10px;
+            --radius-lg: 12px;
+            --radius-full: 9999px;
+
+            /* Shadows */
+            --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.02);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.04), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+            --shadow-inset-sm: inset 0 1px 0 rgba(255, 255, 255, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.03);
+
+            /* Animation */
+            --duration-fast: 150ms;
+            --duration-normal: 250ms;
+            --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+
+            /* Custom colors for KAU */
+            --kau-primary: #2da6b2;
+            --kau-primary-dark: #21808d;
+            --kau-accent: #e68161;
+            --kau-light-bg: #f8feff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family-arabic);
+            background-color: var(--color-background);
+            color: var(--color-text);
+            line-height: var(--line-height-normal);
+            direction: rtl;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        .header {
+            background: var(--kau-primary);
+            color: white;
+            padding: var(--space-16) var(--space-24);
+            box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header h1 {
+            font-size: var(--font-size-3xl);
+            font-weight: var(--font-weight-bold);
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--kau-primary);
+            font-size: var(--font-size-2xl);
+        }
+
+        /* Main Chat Area */
+        .chat-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: var(--space-20);
+            scroll-behavior: smooth;
+        }
+
+        /* Welcome Screen */
+        .welcome-screen {
+            text-align: center;
+            padding: var(--space-32);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .welcome-title {
+            font-size: var(--font-size-4xl);
+            color: var(--kau-primary);
+            margin-bottom: var(--space-16);
+        }
+
+        .welcome-subtitle {
+            font-size: var(--font-size-lg);
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-32);
+            line-height: 1.6;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: var(--space-32);
+            text-align: right;
+        }
+
+        .features-list li {
+            padding: var(--space-8) 0;
+            font-size: var(--font-size-lg);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-16);
+            margin-bottom: var(--space-32);
+        }
+
+        .service-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-card-border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-20);
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .service-card i {
+            font-size: var(--font-size-2xl);
+            color: var(--kau-primary);
+            margin-bottom: var(--space-12);
+        }
+
+        /* Messages */
+        .message {
+            display: flex;
+            margin-bottom: var(--space-20);
+            animation: messageSlide 0.3s ease-out;
+        }
+
+        .message.user {
+            justify-content: flex-start;
+        }
+
+        .message.bot {
+            justify-content: flex-end;
+        }
+
+        .message-content {
+            max-width: 70%;
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-12);
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-lg);
+            flex-shrink: 0;
+        }
+
+        .user .avatar {
+            background: var(--kau-accent);
+            color: white;
+        }
+
+        .bot .avatar {
+            background: var(--kau-primary);
+            color: white;
+        }
+
+        .message-bubble {
+            padding: var(--space-12) var(--space-16);
+            border-radius: var(--radius-lg);
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .user .message-bubble {
+            background: var(--color-bg-1);
+            border: 1px solid var(--color-card-border);
+        }
+
+        .bot .message-bubble {
+            background: var(--kau-primary);
+            color: white;
+        }
+
+        .message-time {
+            font-size: var(--font-size-xs);
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: var(--space-4);
+        }
+
+        .user .message-time {
+            color: var(--color-text-secondary);
+        }
+
+        /* Typing Indicator */
+        .typing-indicator {
+            display: none;
+            align-items: center;
+            gap: var(--space-12);
+            margin-bottom: var(--space-20);
+            justify-content: flex-end;
+        }
+
+        .typing-text {
+            color: var(--color-text-secondary);
+            font-size: var(--font-size-sm);
+            margin-right: var(--space-8);
+        }
+
+        .typing-dots {
+            display: flex;
+            gap: var(--space-4);
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: var(--radius-full);
+            background: var(--kau-primary);
+            animation: typingDot 1.4s infinite ease-in-out;
+        }
+
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+
+        /* Input Area */
+        .input-area {
+            background: var(--color-surface);
+            border-top: 1px solid var(--color-border);
+            padding: var(--space-20);
+        }
+
+        .quick-actions {
+            display: flex;
+            gap: var(--space-8);
+            margin-bottom: var(--space-16);
+            flex-wrap: wrap;
+        }
+
+        .quick-action {
+            background: var(--color-bg-2);
+            border: 1px solid var(--color-card-border);
+            border-radius: var(--radius-full);
+            padding: var(--space-8) var(--space-16);
+            font-size: var(--font-size-sm);
+            cursor: pointer;
+            transition: all var(--duration-fast) var(--ease-standard);
+            color: var(--color-text);
+        }
+
+        .quick-action:hover {
+            background: var(--kau-primary);
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        .input-container {
+            display: flex;
+            gap: var(--space-12);
+            align-items: center;
+        }
+
+        .message-input {
+            flex: 1;
+            padding: var(--space-12) var(--space-16);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-base);
+            font-family: var(--font-family-arabic);
+            background: white;
+            transition: border-color var(--duration-fast) var(--ease-standard);
+        }
+
+        .message-input:focus {
+            outline: none;
+            border-color: var(--kau-primary);
+            box-shadow: var(--focus-ring);
+        }
+
+        .send-button {
+            width: 48px;
+            height: 48px;
+            border: none;
+            border-radius: var(--radius-lg);
+            background: var(--kau-primary);
+            color: white;
+            cursor: pointer;
+            font-size: var(--font-size-lg);
+            transition: all var(--duration-fast) var(--ease-standard);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .send-button:hover {
+            background: var(--kau-primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .send-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Animations */
+        @keyframes messageSlide {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes typingDot {
+            0%, 80%, 100% {
+                transform: scale(0);
+            }
+            40% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Scrollbar */
+        .chat-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .chat-messages::-webkit-scrollbar-track {
+            background: var(--color-secondary);
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: var(--kau-primary);
+            border-radius: var(--radius-full);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .header {
+                padding: var(--space-12) var(--space-16);
+            }
+
+            .header h1 {
+                font-size: var(--font-size-xl);
+            }
+
+            .chat-messages {
+                padding: var(--space-16);
+            }
+
+            .message-content {
+                max-width: 85%;
+            }
+
+            .welcome-screen {
+                padding: var(--space-20);
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .quick-actions {
+                justify-content: center;
+            }
+        }
+
+        /* Hide welcome when chat starts */
+        .chat-started .welcome-screen {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>جامعة الملك عبدالعزيز - المساعد الذكي</h1>
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
+        </header>
+
+        <!-- Main Chat Container -->
+        <div class="chat-container">
+            <div class="chat-messages" id="chatMessages">
+                <!-- Welcome Screen -->
+                <div class="welcome-screen" id="welcomeScreen">
+                    <h2 class="welcome-title">السلام عليكم وأهلاً وسهلاً بك! 🎓</h2>
+                    <p class="welcome-subtitle">
+                        أنا مساعدك الذكي في جامعة الملك عبد العزيز. يمكنني الإجابة على أي سؤال لديك!
+                    </p>
+                    
+                    <ul class="features-list">
+                        <li>✅ أفهم العامية السعودية والفصحى</li>
+                        <li>✅ أجيب على أي سؤال بذكاء اصطناعي متقدم</li>
+                        <li>✅ قاعدة معلومات محدثة ومتجددة</li>
+                        <li>✅ متاح 24/7 للإجابة على استفساراتك</li>
+                    </ul>
+
+                    <div class="services-grid">
+                        <div class="service-card">
+                            <i class="fas fa-search"></i>
+                            <div>إجابات ذكية ومتقدمة</div>
+                        </div>
+                        <div class="service-card">
+                            <i class="fas fa-sync"></i>
+                            <div>إجابات محدثة</div>
+                        </div>
+                        <div class="service-card">
+                            <i class="fas fa-language"></i>
+                            <div>دعم باللغتين</div>
+                        </div>
+                        <div class="service-card">
+                            <i class="fas fa-clock"></i>
+                            <div>متاح 24/7</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Typing Indicator -->
+                <div class="typing-indicator" id="typingIndicator">
+                    <div class="avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="typing-dots">
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="input-area">
+                <div class="quick-actions">
+                    <button class="quick-action" data-message="ما هي معلومات التسجيل في جامعة الملك عبدالعزيز؟">
+                        📝 معلومات التسجيل
+                    </button>
+                    <button class="quick-action" data-message="متى مواعيد الاختبارات في جامعة الملك عبدالعزيز؟">
+                        📅 مواعيد الاختبارات
+                    </button>
+                    <button class="quick-action" data-message="ما هي الخدمات الطلابية المتاحة في جامعة الملك عبدالعزيز؟">
+                        🎓 الخدمات الطلابية
+                    </button>
+                    <button class="quick-action" data-message="كيف أصل إلى المكتبة الرقمية في جامعة الملك عبدالعزيز؟">
+                        📚 المكتبة الرقمية
+                    </button>
+                </div>
+                
+                <div class="input-container">
+                    <input type="text" class="message-input" id="messageInput" placeholder="اكتب رسالتك هنا...">
+                    <button class="send-button" id="sendButton">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Application State
+        let messages = [];
+        let isFirstMessage = true;
+        let conversationHistory = [];
+
+        // API Configuration
+        const API_CONFIG = {
+            baseURL: 'https://api.perplexity.ai',
+            endpoint: '/chat/completions',
+            apiKey: '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',
+            model: 'sonar-pro',
+            maxTokens: 1000,
+            temperature: 0.7
+        };
+
+        // System prompt for the AI
+        const SYSTEM_PROMPT = "أنت مساعد ذكي لجامعة الملك عبدالعزيز. أجب على أسئلة الطلاب بوضوح واحترافية. إذا كان السؤال متعلقاً بالجامعة، قدم معلومات مفيدة ومحدثة. إذا كان السؤال عاماً، أجب عليه بشكل مباشر ومختصر. استخدم اللغة العربية في الإجابة وكن ودوداً ومساعداً.";
+
+        // Error messages
+        const ERROR_MESSAGES = {
+            auth: "حدث خطأ في المصادقة. يرجى المحاولة مرة أخرى لاحقاً.",
+            rateLimit: "تم تجاوز الحد المسموح من الطلبات. يرجى الانتظار قليلاً والمحاولة مرة أخرى.",
+            network: "تعذر الاتصال بالخدمة. يرجى التحقق من اتصال الإنترنت والمحاولة مرة أخرى.",
+            general: "حدث خطأ أثناء معالجة طلبك. يرجى المحاولة مرة أخرى.",
+            empty: "يرجى كتابة سؤالك أولاً."
+        };
+
+        // Loading messages
+        const LOADING_MESSAGES = [
+            "جاري البحث...",
+            "جاري معالجة سؤالك...",
+            "جاري إيجاد الإجابة..."
+        ];
+
+        // DOM Elements
+        const chatMessages = document.getElementById('chatMessages');
+        const messageInput = document.getElementById('messageInput');
+        const sendButton = document.getElementById('sendButton');
+        const typingIndicator = document.getElementById('typingIndicator');
+        const welcomeScreen = document.getElementById('welcomeScreen');
+        const quickActions = document.querySelectorAll('.quick-action');
+
+        // Event Listeners
+        sendButton.addEventListener('click', sendMessage);
+        messageInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        quickActions.forEach(action => {
+            action.addEventListener('click', function() {
+                const message = this.dataset.message;
+                sendMessage(message);
+            });
+        });
+
+        // Functions
+        async function sendMessage(predefinedMessage = null) {
+            const message = predefinedMessage || messageInput.value.trim();
+            if (!message) {
+                showError(ERROR_MESSAGES.empty);
+                return;
+            }
+
+            // Hide welcome screen on first message
+            if (isFirstMessage) {
+                welcomeScreen.style.display = 'none';
+                isFirstMessage = false;
+            }
+
+            // Add user message
+            addMessage(message, 'user');
+            
+            // Clear input
+            if (!predefinedMessage) {
+                messageInput.value = '';
+            }
+
+            // Disable send button and input
+            sendButton.disabled = true;
+            messageInput.disabled = true;
+
+            // Show typing indicator with random loading message
+            const loadingMessage = LOADING_MESSAGES[Math.floor(Math.random() * LOADING_MESSAGES.length)];
+            showTypingIndicator(loadingMessage);
+
+            try {
+                // Get AI response
+                const response = await getAIResponse(message);
+                hideTypingIndicator();
+                addMessage(response, 'bot');
+            } catch (error) {
+                hideTypingIndicator();
+                console.error('Error getting AI response:', error);
+                addMessage(getErrorMessage(error), 'bot');
+            } finally {
+                // Re-enable send button and input
+                sendButton.disabled = false;
+                messageInput.disabled = false;
+                messageInput.focus();
+            }
+        }
+
+        function addMessage(content, type) {
+            const messageElement = document.createElement('div');
+            messageElement.className = `message ${type}`;
+            
+            const currentTime = new Date().toLocaleTimeString('ar-SA', {
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+
+            messageElement.innerHTML = `
+                <div class="message-content">
+                    <div class="avatar">
+                        ${type === 'user' ? '<i class="fas fa-user"></i>' : '<i class="fas fa-robot"></i>'}
+                    </div>
+                    <div>
+                        <div class="message-bubble">
+                            ${content.replace(/\n/g, '<br>')}
+                        </div>
+                        <div class="message-time">${currentTime}</div>
+                    </div>
+                </div>
+            `;
+
+            chatMessages.insertBefore(messageElement, typingIndicator);
+            scrollToBottom();
+            
+            // Store message
+            messages.push({ content, type, time: currentTime });
+        }
+
+        async function getAIResponse(userMessage) {
+            // Add user message to conversation history
+            conversationHistory.push({
+                role: 'user',
+                content: userMessage
+            });
+
+            // Prepare messages for API call
+            const messages = [
+                {
+                    role: 'system',
+                    content: SYSTEM_PROMPT
+                },
+                ...conversationHistory
+            ];
+
+            // Make API call
+            const response = await fetch(`${API_CONFIG.baseURL}${API_CONFIG.endpoint}`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${API_CONFIG.apiKey}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    model: API_CONFIG.model,
+                    messages: messages,
+                    max_tokens: API_CONFIG.maxTokens,
+                    temperature: API_CONFIG.temperature
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
+
+            const data = await response.json();
+            const aiResponse = data.choices[0].message.content;
+
+            // Add AI response to conversation history
+            conversationHistory.push({
+                role: 'assistant',
+                content: aiResponse
+            });
+
+            // Keep conversation history manageable (last 10 messages)
+            if (conversationHistory.length > 10) {
+                conversationHistory = conversationHistory.slice(-10);
+            }
+
+            return aiResponse;
+        }
+
+        function getErrorMessage(error) {
+            const errorMessage = error.message.toLowerCase();
+            
+            if (errorMessage.includes('401') || errorMessage.includes('unauthorized')) {
+                return ERROR_MESSAGES.auth;
+            } else if (errorMessage.includes('429') || errorMessage.includes('rate limit')) {
+                return ERROR_MESSAGES.rateLimit;
+            } else if (errorMessage.includes('network') || errorMessage.includes('fetch')) {
+                return ERROR_MESSAGES.network;
+            } else {
+                return ERROR_MESSAGES.general;
+            }
+        }
+
+        function showError(message) {
+            // Create a temporary error display
+            const errorDiv = document.createElement('div');
+            errorDiv.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: var(--color-error);
+                color: white;
+                padding: var(--space-12) var(--space-16);
+                border-radius: var(--radius-base);
+                box-shadow: var(--shadow-lg);
+                z-index: 1000;
+                animation: slideIn 0.3s ease-out;
+            `;
+            errorDiv.textContent = message;
+            document.body.appendChild(errorDiv);
+            
+            setTimeout(() => {
+                errorDiv.remove();
+            }, 3000);
+        }
+
+        function showTypingIndicator(message = 'جاري البحث...') {
+            // Update typing indicator text
+            const typingText = typingIndicator.querySelector('.typing-text');
+            if (typingText) {
+                typingText.textContent = message;
+            } else {
+                // Add typing text if it doesn't exist
+                const textElement = document.createElement('span');
+                textElement.className = 'typing-text';
+                textElement.textContent = message;
+                textElement.style.marginRight = 'var(--space-8)';
+                typingIndicator.insertBefore(textElement, typingIndicator.querySelector('.typing-dots'));
+            }
+            
+            typingIndicator.style.display = 'flex';
+            scrollToBottom();
+        }
+
+        function hideTypingIndicator() {
+            typingIndicator.style.display = 'none';
+        }
+
+        function scrollToBottom() {
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Initialize app
+        document.addEventListener('DOMContentLoaded', function() {
+            messageInput.focus();
+        });
+    </script>
+</body>
+</html>
